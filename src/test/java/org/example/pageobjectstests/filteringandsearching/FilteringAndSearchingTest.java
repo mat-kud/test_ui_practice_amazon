@@ -1,14 +1,11 @@
 package org.example.pageobjectstests.filteringandsearching;
 
-import org.example.pageobjects.IndexPage;
 import org.example.pageobjectstests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class FilteringAndSearchingTest extends BaseTest {
-    private final IndexPage mainPage =
-            new IndexPage(webDriver);
 
     @DataProvider(name = "brandNames")
     public Object[][] brandNames() {
@@ -22,7 +19,7 @@ public class FilteringAndSearchingTest extends BaseTest {
     @Test(dataProvider = "brandNames")
     public void verifyTitlesContainChosenBrand(String brandName) {
         boolean everyTitleContainsInputWord = mainPage
-                .openIndexPage()
+                .openMainPage()
                 .openGamingKeyboardsPage()
                 .selectBrand(brandName)
                 .verifyEveryTitleContainsBrandName(brandName);
@@ -40,7 +37,7 @@ public class FilteringAndSearchingTest extends BaseTest {
     @Test(dataProvider = "brandNamesAndPriceRanges")
     public void verifyProductsPricesAreInDefinedRange(String brandName, float minPrice, float maxPrice) {
         boolean arePricesInChosenRange = mainPage
-                .openIndexPage()
+                .openMainPage()
                 .openGamingKeyboardsPage()
                 .selectBrand(brandName)
                 .setPriceRange(minPrice, maxPrice)
@@ -52,7 +49,7 @@ public class FilteringAndSearchingTest extends BaseTest {
     @Test(dataProvider = "brandNames")
     public void verifyProductsPricesAreSortedAscendingly(String brandName) {
         boolean arePricesInAscendingOrder = mainPage
-                .openIndexPage()
+                .openMainPage()
                 .openGamingKeyboardsPage()
                 .selectBrand(brandName)
                 .sortProductsByPriceLowToHigh()

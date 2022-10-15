@@ -1,6 +1,7 @@
 package org.example.pageobjects.filteringandsearching;
 
 import org.example.pageobjects.BasePage;
+import org.example.pageobjects.ProductPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,9 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GamingKeyboardsCategoryPage extends BasePage {
+public class GamingKeyboardsResultsPage extends BasePage {
 
     private final String sponsoredSpanXpath = ".//span[@class='s-label-popover-default']/span";
 
@@ -47,18 +49,11 @@ public class GamingKeyboardsCategoryPage extends BasePage {
     @FindBy(xpath = "//*[contains(@class,'s-pagination-next')]")
     private WebElement paginationNextBtn;
 
-    public GamingKeyboardsCategoryPage(WebDriver webDriver) {
+    public GamingKeyboardsResultsPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public GamingKeyboardsCategoryPage open() {
-        String categoryPath = "/s?k=gaming+keyboard&pd_rd_r=da8afc49-fa94-41c3-9d45-7e811ac33b10&pd_rd_w=gSHhP&pd_rd_wg"
-                + "=fx882&pf_rd_p=12129333-2117-4490-9c17-6d31baf0582a&pf_rd_r=XYWA244WM0H05HEYD0RE&ref=pd_gw_unk";
-        webDriver.get("https://www.amazon.com" + categoryPath);
-        return this;
-    }
-
-    public GamingKeyboardsCategoryPage selectBrand(String brandName) {
+    public GamingKeyboardsResultsPage selectBrand(String brandName) {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("arguments[0].click();", brandsExpander);
 
@@ -68,27 +63,35 @@ public class GamingKeyboardsCategoryPage extends BasePage {
         return this;
     }
 
-    public GamingKeyboardsCategoryPage setPriceRange(float minPrice, float maxPrice) {
-        waitForElementVisibility(minPriceInput);
+    public GamingKeyboardsResultsPage setPriceRange(float minPrice, float maxPrice) {
+        customActions.waitForElementVisibility(minPriceInput);
         minPriceInput.sendKeys(String.valueOf(minPrice));
         maxPriceInput.sendKeys(String.valueOf(maxPrice));
-        waitForElementVisibility(submitPriceRangeBtn);
+        customActions.waitForElementVisibility(submitPriceRangeBtn);
         submitPriceRangeBtn.click();
         return this;
     }
 
-    public GamingKeyboardsCategoryPage sortProductsByPriceLowToHigh() {
-        waitForElementVisibility(sortingDropdownList);
+    public GamingKeyboardsResultsPage sortProductsByPriceLowToHigh() {
+        customActions.waitForElementVisibility(sortingDropdownList);
         sortingDropdownList.click();
         lowToHighDropdownSelection.click();
         return this;
+    }
+
+    public ProductPage clickRandomProduct(){
+        Random random = new Random();
+        customActions.waitForElementPresence(titleXpath);
+        titlesList.get(random.nextInt(titlesList.size())).click();
+
+        return new ProductPage(webDriver);
     }
 
     public boolean verifyEveryTitleContainsBrandName(String brandName) {
         boolean everyTitleContainsInputWord;
 
         while (true) {
-            waitForElementPresence(titleXpath);
+            customActions.waitForElementPresence(titleXpath);
 
             everyTitleContainsInputWord = titlesList
                     .stream()
@@ -109,7 +112,7 @@ public class GamingKeyboardsCategoryPage extends BasePage {
         boolean arePricesInChosenRange;
 
         while (true) {
-            waitForElementPresence(itemContainersXpath);
+            customActions.waitForElementPresence(itemContainersXpath);
 
             arePricesInChosenRange = itemContainers
                     .stream()
@@ -134,7 +137,7 @@ public class GamingKeyboardsCategoryPage extends BasePage {
         List<Float> prices;
 
         while (true) {
-            waitForElementPresence(itemContainersXpath);
+            customActions.waitForElementPresence(itemContainersXpath);
 
             prices = itemContainers
                     .stream()
@@ -162,7 +165,7 @@ public class GamingKeyboardsCategoryPage extends BasePage {
         }
 
         try{
-            waitForElementVisibility(paginationNextBtn);
+            customActions.waitForElementVisibility(paginationNextBtn);
         } catch(NoSuchElementException e){
             System.err.println("Pagination next button not found");
             return true;
@@ -183,13 +186,5 @@ public class GamingKeyboardsCategoryPage extends BasePage {
         }
 
         return true;
-    }
-
-    private void waitForElementVisibility(WebElement element) {
-        webDriverWait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    private void waitForElementPresence(String elementXpath){
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementXpath)));
     }
 }
