@@ -1,7 +1,5 @@
-package org.example.pageobjects.filteringandsearching;
+package org.example.pageobjects;
 
-import org.example.pageobjects.BasePage;
-import org.example.pageobjects.ProductPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -64,16 +62,16 @@ public class GamingKeyboardsResultsPage extends BasePage {
     }
 
     public GamingKeyboardsResultsPage setPriceRange(float minPrice, float maxPrice) {
-        customActions.waitForElementVisibility(minPriceInput);
+        waitForElementVisibility(minPriceInput);
         minPriceInput.sendKeys(String.valueOf(minPrice));
         maxPriceInput.sendKeys(String.valueOf(maxPrice));
-        customActions.waitForElementVisibility(submitPriceRangeBtn);
+        waitForElementVisibility(submitPriceRangeBtn);
         submitPriceRangeBtn.click();
         return this;
     }
 
     public GamingKeyboardsResultsPage sortProductsByPriceLowToHigh() {
-        customActions.waitForElementVisibility(sortingDropdownList);
+        waitForElementVisibility(sortingDropdownList);
         sortingDropdownList.click();
         lowToHighDropdownSelection.click();
         return this;
@@ -81,7 +79,7 @@ public class GamingKeyboardsResultsPage extends BasePage {
 
     public ProductPage clickRandomProduct(){
         Random random = new Random();
-        customActions.waitForElementPresence(titleXpath);
+        waitForElementPresence(titleXpath);
         titlesList.get(random.nextInt(titlesList.size())).click();
 
         return new ProductPage(webDriver);
@@ -91,7 +89,7 @@ public class GamingKeyboardsResultsPage extends BasePage {
         boolean everyTitleContainsInputWord;
 
         while (true) {
-            customActions.waitForElementPresence(titleXpath);
+            waitForElementPresence(titleXpath);
 
             everyTitleContainsInputWord = titlesList
                     .stream()
@@ -112,7 +110,7 @@ public class GamingKeyboardsResultsPage extends BasePage {
         boolean arePricesInChosenRange;
 
         while (true) {
-            customActions.waitForElementPresence(itemContainersXpath);
+            waitForElementPresence(itemContainersXpath);
 
             arePricesInChosenRange = itemContainers
                     .stream()
@@ -137,7 +135,7 @@ public class GamingKeyboardsResultsPage extends BasePage {
         List<Float> prices;
 
         while (true) {
-            customActions.waitForElementPresence(itemContainersXpath);
+            waitForElementPresence(itemContainersXpath);
 
             prices = itemContainers
                     .stream()
@@ -165,7 +163,7 @@ public class GamingKeyboardsResultsPage extends BasePage {
         }
 
         try{
-            customActions.waitForElementVisibility(paginationNextBtn);
+            waitForElementVisibility(paginationNextBtn);
         } catch(NoSuchElementException e){
             System.err.println("Pagination next button not found");
             return true;

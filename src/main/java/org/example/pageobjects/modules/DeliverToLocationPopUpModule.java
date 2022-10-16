@@ -38,9 +38,9 @@ public class DeliverToLocationPopUpModule extends BasePage {
     }
 
     public DeliverToLocationPopUpModule setZipCode(String zipCode){
-        customActions.waitForElementVisibility(zipCodeInput);
+        waitForElementVisibility(zipCodeInput);
         zipCodeInput.sendKeys(zipCode);
-        customActions.waitForElementVisibility(zipCodeApplyBtn);
+        waitForElementToBeClickable(zipCodeApplyBtn);
         zipCodeApplyBtn.click();
 
         return this;
@@ -48,7 +48,7 @@ public class DeliverToLocationPopUpModule extends BasePage {
 
 
     public List<String> getListOfDeliverableCountries(){
-        customActions.waitForElementVisibility(listOfCountries);
+        waitForElementVisibility(listOfCountries);
         Select countries = new Select(listOfCountries);
 
         return countries.getOptions().stream()
@@ -57,7 +57,7 @@ public class DeliverToLocationPopUpModule extends BasePage {
     }
 
     public DeliverToLocationPopUpModule selectCountry(String country){
-        customActions.waitForElementVisibility(listOfCountries);
+        waitForElementVisibility(listOfCountries);
         Select countries = new Select(listOfCountries);
         countries.selectByVisibleText(country);
 
@@ -65,20 +65,20 @@ public class DeliverToLocationPopUpModule extends BasePage {
     }
 
     public MainPage clickContinueBtn(){
-        customActions.waitForElementVisibility(continueBtn);
+        waitForElementToBeClickable(continueBtn);
         continueBtn.click();
         //sleep thread to avoid StaleElementReferenceException
-        customActions.sleepThread(500);
+        sleepThread(500);
 
         return new MainPage(webDriver);
     }
 
 
     public MainPage clickDoneBtn(){
-        customActions.waitForElementVisibility(doneBtn);
+        waitForElementToBeClickable(doneBtn);
         doneBtn.click();
         //sleep thread to avoid StaleElementReferenceException
-        customActions.sleepThread(500);
+        sleepThread(500);
 
         return new MainPage(webDriver);
     }

@@ -1,15 +1,9 @@
 package org.example.pageobjects;
 
-import org.example.pageobjects.filteringandsearching.GamingKeyboardsResultsPage;
 import org.example.pageobjects.modules.DeliverToLocationPopUpModule;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 
 public class MainPage extends BasePage {
@@ -37,13 +31,13 @@ public class MainPage extends BasePage {
     }
 
     public DeliverToLocationPopUpModule openDeliverToModule(){
-        customActions.waitForElementVisibility(deliverToModule);
+        waitForElementToBeClickable(deliverToModule);
         deliverToModule.click();
         return new DeliverToLocationPopUpModule(webDriver);
     }
 
     public String getZipCodeFromMainPage(){
-        customActions.waitForElementVisibility(cityAndZipCode);
+        waitForElementVisibility(cityAndZipCode);
 
         return cityAndZipCode.getText();
     }
