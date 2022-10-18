@@ -9,6 +9,9 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//div[@id='contextualIngressPtLabel_deliveryShortLine']/span[2]")
     private WebElement deliveryCountry;
 
+    @FindBy(id = "add-to-cart-button")
+    private WebElement addToCartBtn;
+
 
     public ProductPage(WebDriver webDriver) {
         super(webDriver);
@@ -18,5 +21,9 @@ public class ProductPage extends BasePage {
         return deliveryCountry.getText();
     }
 
+    public ShoppingCartPage addProductToCart(){
+        addToCartBtn.click();
 
+        return new ShoppingCartPage(webDriver);
+    }
 }
