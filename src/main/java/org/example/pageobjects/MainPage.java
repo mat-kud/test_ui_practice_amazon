@@ -19,6 +19,12 @@ public class MainPage extends BasePage {
     @FindBy(id = "glow-ingress-line2")
     private WebElement cityAndZipCode;
 
+    @FindBy(id = "twotabsearchtextbox")
+    private WebElement searchBox;
+
+    @FindBy(id = "nav-search-submit-button")
+    private WebElement searchBoxBtn;
+
     public MainPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -38,15 +44,28 @@ public class MainPage extends BasePage {
         return new HeadsetsResultsPage(webDriver);
     }
 
-    public DeliverToLocationPopUpModule openDeliverToModule(){
+    public DeliverToLocationPopUpModule openDeliverToModule() {
         waitForElementToBeClickable(deliverToModule);
         deliverToModule.click();
         return new DeliverToLocationPopUpModule(webDriver);
     }
 
-    public String getZipCodeFromMainPage(){
+    public String getZipCodeFromMainPage() {
         waitForElementVisibility(cityAndZipCode);
-
         return cityAndZipCode.getText();
+    }
+
+    public NoResultsPage sendInvalidInput(String invalidInput) {
+        searchBox.sendKeys(invalidInput);
+        searchBoxBtn.click();
+
+        return new NoResultsPage(webDriver);
+    }
+
+    public LaptopsResultsPage sendValidInput(String input) {
+        searchBox.sendKeys(input);
+        searchBoxBtn.click();
+
+        return new LaptopsResultsPage(webDriver);
     }
 }
