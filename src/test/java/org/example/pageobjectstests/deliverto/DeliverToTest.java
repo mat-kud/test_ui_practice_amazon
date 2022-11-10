@@ -36,7 +36,8 @@ public class DeliverToTest extends BaseTest {
                 .getZipCodeFromMainPage();
 
         softAssert.assertTrue(codeAndCityFromMainPage.contains(city), "incorrect city");
-        Assert.assertTrue(codeAndCityFromMainPage.contains(zipCode), "incorrect zip code");
+        softAssert.assertTrue(codeAndCityFromMainPage.contains(zipCode), "incorrect zip code");
+        softAssert.assertAll();
     }
 
     @Test(dataProvider = "countries")
