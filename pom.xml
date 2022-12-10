@@ -39,7 +39,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>14</release>
                     <compilerArgument>-parameters</compilerArgument>
                     <source>14</source>
                     <target>14</target>
