@@ -8,4 +8,4 @@ Tested functionalities:
 3.	Add/Remove item into cart 
 4.	Filtering and Searching 
 
-Test cases descriptions can be found in [here](test_cases_description.pdf).
+Test cases descriptions can be found [here](test_cases_description.pdf).
