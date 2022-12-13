@@ -31,7 +31,7 @@ public class AddRemoveItemsFromCartTest extends BaseTest {
                 .goToShoppingCart()
                 .deleteProduct();
 
-        softAssert.assertEquals(shoppingCart.getCartIsEmptyConfirmation(), "Your Amazon Cart is Empty",
+        softAssert.assertEquals(shoppingCart.getCartIsEmptyConfirmation(), "Your Amazon Cart is empty.",
                 "Cart is empty confirmation message is not correct");
         softAssert.assertEquals(shoppingCart.getTotalPrice(), "$0.00", "Total price should be $0.00");
         softAssert.assertAll();

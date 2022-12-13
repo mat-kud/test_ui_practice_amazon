@@ -67,7 +67,8 @@ public class DeliverToLocationPopUpModule extends BasePage {
     public MainPage clickContinueBtn(){
         waitForElementToBeClickable(continueBtn);
         continueBtn.click();
-        //sleep thread to avoid StaleElementReferenceException
+//      after clicking doneBtn, module is closing, so elements on main page are visible for a second, but
+//      then page is refreshed and zipcode element updated, so using waiter with stalesnessOf condition wont work
         sleepThread(500);
 
         return new MainPage(webDriver);
@@ -77,7 +78,8 @@ public class DeliverToLocationPopUpModule extends BasePage {
     public MainPage clickDoneBtn(){
         waitForElementToBeClickable(doneBtn);
         doneBtn.click();
-        //sleep thread to avoid StaleElementReferenceException
+//      after clicking doneBtn, module is closing, so elements on main page are visible for a second, but
+//      then page is refreshed and zipcode element updated, so using waiter with stalesnessOf condition wont work
         sleepThread(500);
 
         return new MainPage(webDriver);
