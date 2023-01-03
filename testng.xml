@@ -1,23 +1,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Amazon" data-provider-thread-count="2">
+<suite name="Amazon">
     <test name="AddRemoveItemsFromCart">
-        <classes>
-            <class name="org.example.pageobjectstests.addremoveitemsfromcart.AddRemoveItemsFromCartTest"/>
-        </classes>
+        <packages>
+            <package name="org.example.pageobjectstests.addremoveitemsfromcart"/>
+        </packages>
     </test>
     <test name="DeliverTo">
-        <classes>
-            <class name="org.example.pageobjectstests.deliverto.DeliverToTest"/>
-        </classes>
+        <packages>
+            <package name="org.example.pageobjectstests.deliverto"/>
+        </packages>
     </test>
     <test name="FilteringAndSearching">
-        <classes>
-            <class name="org.example.pageobjectstests.filteringandsearching.FilteringAndSearchingTest"/>
-        </classes>
+        <packages>
+            <package name="org.example.pageobjectstests.filteringandsearching"/>
+        </packages>
     </test>
     <test name="SearchField">
-        <classes>
-            <class name="org.example.pageobjectstests.searchfield.SearchFieldTest"/>
-        </classes>
+        <packages>
+            <package name="org.example.pageobjectstests.searchfield"/>
+        </packages>
     </test>
 </suite>

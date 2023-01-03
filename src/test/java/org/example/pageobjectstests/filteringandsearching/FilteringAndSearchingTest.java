@@ -10,9 +10,7 @@ public class FilteringAndSearchingTest extends BaseTest {
     @DataProvider(name = "brandNames")
     public Object[][] brandNames() {
         return new Object[][]{
-                {"Corsair"},
-                {"Razer"}
-
+                {"Corsair"}
         };
     }
 

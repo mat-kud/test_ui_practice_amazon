@@ -30,7 +30,7 @@ public class DeliverToLocationPopUpModule extends BasePage {
     @FindBy(id ="GLUXCountryListDropdown")
     private WebElement countriesDropDownMenu;
 
-    @FindBy(id= "GLUXCountryList")
+    @FindBy(id = "GLUXCountryList")
     private WebElement listOfCountries;
 
     public DeliverToLocationPopUpModule(WebDriver webDriver) {
@@ -69,7 +69,7 @@ public class DeliverToLocationPopUpModule extends BasePage {
         continueBtn.click();
 //      after clicking doneBtn, module is closing, so elements on main page are visible for a second, but
 //      then page is refreshed and zipcode element updated, so using waiter with stalesnessOf condition wont work
-        sleepThread(500);
+        //sleepThread(500);
 
         return new MainPage(webDriver);
     }
@@ -78,9 +78,6 @@ public class DeliverToLocationPopUpModule extends BasePage {
     public MainPage clickDoneBtn(){
         waitForElementToBeClickable(doneBtn);
         doneBtn.click();
-//      after clicking doneBtn, module is closing, so elements on main page are visible for a second, but
-//      then page is refreshed and zipcode element updated, so using waiter with stalesnessOf condition wont work
-        sleepThread(500);
 
         return new MainPage(webDriver);
     }

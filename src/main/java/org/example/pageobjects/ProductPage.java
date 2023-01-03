@@ -12,7 +12,6 @@ public class ProductPage extends BasePage {
     @FindBy(id = "add-to-cart-button")
     private WebElement addToCartBtn;
 
-
     public ProductPage(WebDriver webDriver) {
         super(webDriver);
     }

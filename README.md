@@ -1,6 +1,6 @@
 ## UI Tests
 
-Used technologies: **Java**, **Selenium webDriver**, **TestNG**.
+Used technologies: **Java**, **SLF4J**, **Selenium webDriver**, **TestNG**.
 
 Tested functionalities:
 1.	Deliver To 

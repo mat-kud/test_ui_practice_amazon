@@ -52,6 +52,9 @@ public class MainPage extends BasePage {
     }
 
     public String getZipCodeFromMainPage() {
+//      after clicking doneBtn, module is closing, so elements on main page are visible for a second, but
+//      then the zipcode element is updated, so using waiter with stalesnessOf condition wont work
+        sleepThread(500);
         waitForElementVisibility(cityAndZipCode);
         return cityAndZipCode.getText();
     }
