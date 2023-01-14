@@ -35,7 +35,7 @@ public class GamingKeyboardsResultsPage extends BasePage {
     @FindBy(id = "high-price")
     private WebElement maxPriceInput;
 
-    @FindBy(xpath = "//span[contains(@class,'a-button')]/span/input")
+    @FindBy(xpath = "//input[@id='high-price']/following-sibling::span//input")
     private WebElement submitPriceRangeBtn;
 
     @FindBy(id = "a-autoid-0-announce")

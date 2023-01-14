@@ -60,6 +60,7 @@ public class MainPage extends BasePage {
     }
 
     public NoResultsPage sendInvalidInput(String invalidInput) {
+        searchBox.clear();
         searchBox.sendKeys(invalidInput);
         searchBoxBtn.click();
 
@@ -67,6 +68,7 @@ public class MainPage extends BasePage {
     }
 
     public LaptopsResultsPage sendValidInput(String input) {
+        searchBox.clear();
         searchBox.sendKeys(input);
         searchBoxBtn.click();
 
