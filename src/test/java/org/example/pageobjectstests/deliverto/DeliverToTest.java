@@ -1,5 +1,6 @@
 package org.example.pageobjectstests.deliverto;
 
+import org.example.dataproviders.DeliverToDataProvider;
 import org.example.pageobjectstests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -10,23 +11,7 @@ import java.util.List;
 
 public class DeliverToTest extends BaseTest {
 
-    @DataProvider(name = "zipCodes")
-    public Object[][] zipCodes() {
-        return new Object[][]{
-                {"85032", "Phoenix"}
-
-        };
-    }
-
-    @DataProvider(name = "countries")
-    public Object[][] countries() {
-        return new Object[][]{
-                {"Poland"}
-
-        };
-    }
-
-    @Test(dataProvider = "zipCodes")
+    @Test(dataProvider = "zipCodes", dataProviderClass = DeliverToDataProvider.class)
     public void verifyAppliedZipCodeOnMainPage(String zipCode, String city){
         String codeAndCityFromMainPage = mainPage
                 .openMainPage()
@@ -40,7 +25,7 @@ public class DeliverToTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "countries")
+    @Test(dataProvider = "countries", dataProviderClass = DeliverToDataProvider.class)
     public void verifyCountryIsDeliverable(String country){
         List<String> countries = mainPage
                 .openMainPage()
@@ -51,7 +36,7 @@ public class DeliverToTest extends BaseTest {
                 "selected country is not present in deliverable countries list");
     }
 
-    @Test(dataProvider = "countries")
+    @Test(dataProvider = "countries", dataProviderClass = DeliverToDataProvider.class)
     public void verifySelectedCountryAppearsInProductPage(String country){
         String deliveryCountry = mainPage
                 .openMainPage()
@@ -65,6 +50,4 @@ public class DeliverToTest extends BaseTest {
         Assert.assertEquals(country, deliveryCountry,
                 "selected country is not present in product page");
     }
-
-
 }

@@ -15,7 +15,7 @@ public class BaseTest {
     protected final MainPage mainPage = new MainPage(webDriver);
     protected SoftAssert softAssert = new SoftAssert();
 
-    @BeforeTest
+    @BeforeTest()
     protected void setUpDriver() {
         webDriver.manage().window().maximize();
     }

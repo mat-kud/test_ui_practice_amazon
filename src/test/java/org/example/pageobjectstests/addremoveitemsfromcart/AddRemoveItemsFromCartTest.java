@@ -36,6 +36,4 @@ public class AddRemoveItemsFromCartTest extends BaseTest {
         softAssert.assertEquals(shoppingCart.getTotalPrice(), "$0.00", "Total price should be $0.00");
         softAssert.assertAll();
     }
-
-
 }

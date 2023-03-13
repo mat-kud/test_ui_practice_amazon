@@ -1,20 +1,13 @@
 package org.example.pageobjectstests.searchfield;
 
+import org.example.dataproviders.SearchFieldDataProvider;
 import org.example.pageobjectstests.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SearchFieldTest extends BaseTest {
 
-    @DataProvider(name = "invalidInput")
-    public Object[][] invalidInputs() {
-        return new Object[][]{
-                {"asdtrhgfbjhguytu"}
-        };
-    }
-
-    @Test(dataProvider = "invalidInput")
+    @Test(dataProvider = "invalidInput", dataProviderClass = SearchFieldDataProvider.class)
     public void verifyMessageAfterEnteringInvalidInputInSearchBox(String invalidInput) {
         String message = mainPage
                 .openMainPage()
@@ -25,14 +18,7 @@ public class SearchFieldTest extends BaseTest {
                 "Message is not present or incorrect");
     }
 
-    @DataProvider(name = "validInput")
-    public Object[][] validInputs() {
-        return new Object[][]{
-                {"laptop"}
-        };
-    }
-
-    @Test(dataProvider = "validInput")
+    @Test(dataProvider = "validInput", dataProviderClass = SearchFieldDataProvider.class)
     public void verifyInputIsPresentOnResultsPage(String input){
         String displayedInput = mainPage
                 .openMainPage()
@@ -43,7 +29,7 @@ public class SearchFieldTest extends BaseTest {
                 "Input is not present in result info bar");
     }
 
-    @Test(dataProvider = "validInput")
+    @Test(dataProvider = "validInput", dataProviderClass = SearchFieldDataProvider.class)
     public void verifyAnyTitleContainsInput(String input) {
         boolean isAnyTitleContainingProductName = mainPage
                 .openMainPage()
